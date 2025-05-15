@@ -1,9 +1,9 @@
 pipeline {
-    agent any  // Use any available agent
+    agent any
 
     tools {
-        gradle 'Gradle'  // This name must match the one configured under Jenkins > Global Tool Configuration
-        jdk 'JDK'        // Same here for JDK
+        gradle 'Gradle'
+        jdk 'JDK'
     }
 
     environment {
@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/yuvrajandotra/gradle.git'
+                git branch: 'main', url: 'https://github.com/yuvrajandotra/gradle.git'
             }
         }
 
