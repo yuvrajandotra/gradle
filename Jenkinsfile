@@ -2,13 +2,8 @@ pipeline {
     agent any
 
     tools {
-        gradle 'Gradle'   // Must match the name in Jenkins Tool Config
-        jdk 'JDK'         // Must match the JDK name
-    }
-
-    environment {
-        GRADLE_HOME = tool 'Gradle'
-        PATH = "${GRADLE_HOME}/bin:${env.PATH}"
+        maven 'Maven' // Name must match Jenkins Maven installation name
+        jdk 'JDK'     // Name must match Jenkins JDK installation
     }
 
     stages {
@@ -20,19 +15,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'gradle clean build'
+                sh 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'gradle test'
+                sh 'mvn test'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'gradle run'
+                sh 'mvn exec:java -Dexec.mainClass="com.example.Main"' // Replace with your main class
             }
         }
     }
