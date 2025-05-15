@@ -1,39 +1,38 @@
 pipeline {
-    agent any
+    agent any  // Use any available agent
 
     tools {
-        gradle 'Gradle'
+        gradle 'Gradle'  // Ensure this matches the name configured in Jenkins
         jdk 'JDK'
     }
-
-    environment {
-        PATH = "${tool 'Gradle'}/bin:${PATH}"
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yuvrajandotra/gradle.git'
+                git branch: 'master', url: 'https://github.com/yuvrajandotra/gradle.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'gradle clean build'
+                sh 'gradle build'  // Run Maven build
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'gradle test'
-            }
+       stage('Test') {
+           steps {
+               sh 'gradle test'  // Run unit tests
+           }
         }
 
+              
         stage('Run Application') {
             steps {
+                // Start the JAR application
                 sh 'gradle run'
             }
         }
+
+        
     }
 
     post {
