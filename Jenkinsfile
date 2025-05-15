@@ -2,9 +2,14 @@ pipeline {
     agent any  // Use any available agent
 
     tools {
-        gradle 'Gradle'  // Ensure this matches the name configured in Jenkins
-        jdk 'JDK'
+        gradle 'Gradle'  // This name must match the one configured under Jenkins > Global Tool Configuration
+        jdk 'JDK'        // Same here for JDK
     }
+
+    environment {
+        PATH = "${tool 'Gradle'}/bin:${PATH}"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -14,25 +19,21 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'gradle build'  // Run Maven build
+                sh 'gradle clean build'
             }
         }
 
-       stage('Test') {
-           steps {
-               sh 'gradle test'  // Run unit tests
-           }
+        stage('Test') {
+            steps {
+                sh 'gradle test'
+            }
         }
 
-              
         stage('Run Application') {
             steps {
-                // Start the JAR application
                 sh 'gradle run'
             }
         }
-
-        
     }
 
     post {
