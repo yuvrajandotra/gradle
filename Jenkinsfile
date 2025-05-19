@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        gradle 'gradle' // Name must match Jenkins Maven installation name
+        gradle 'Gradle' // Name must match Jenkins Maven installation name
         jdk 'JDK'     // Name must match Jenkins JDK installation
     }
 
