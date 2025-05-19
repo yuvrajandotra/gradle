@@ -3,10 +3,11 @@ plugins {
     id 'application'
 }
 
+
 group = 'com.example'
 version = '1.0-SNAPSHOT'
 
-sourceCompatibility = '17'  // Or whatever JDK version you're using
+sourceCompatibility = '21'  // Or whatever JDK version you're using
 
 repositories {
     mavenCentral()
