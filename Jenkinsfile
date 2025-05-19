@@ -15,19 +15,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'gradle build'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'gradle test'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'mvn exec:java -Dexec.mainClass="com.example.Main"' // Replace with your main class
+                sh 'gradle run' // Replace with your main class
             }
         }
     }
