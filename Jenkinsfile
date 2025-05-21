@@ -14,13 +14,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'  // Run Maven build
+                sh 'gradlew clean build'  // Run Maven build
             }
         }
 
        stage('Test') {
            steps {
-               sh 'mvn test'  // Run unit tests
+               sh 'gradlew test'  // Run unit tests
            }
         }
 
@@ -28,7 +28,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 // Start the JAR application
-                sh 'mvn run'
+                sh 'gradlew run'
             }
         }
 
