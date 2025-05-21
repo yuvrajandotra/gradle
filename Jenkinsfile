@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         gradle 'gradle'  // Ensure this matches Jenkins config
-        jdk 'JDK'
+        jdk 'JDK17'
     }
 
     stages {
