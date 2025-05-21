@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'gradlew clean build'  // Run Maven build
+                sh 'gradlew clean install'  // Run Maven build
             }
         }
 
