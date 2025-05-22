@@ -2,7 +2,6 @@ pipeline {
     agent any  // Use any available agent
 
     tools {
-	maven 'maven'
         gradle 'gradle'  // Ensure this matches the name configured in Jenkins
         jdk 'JDK'
     }
@@ -15,13 +14,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'maven build'  // Run Maven build
+                sh 'gradle build'  // Run Maven build
             }
         }
 
        stage('Test') {
            steps {
-               sh 'maven test'  // Run unit tests
+               sh 'gradle test'  // Run unit tests
            }
         }
 
@@ -29,7 +28,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 // Start the JAR application
-                sh 'maven clean install'
+                sh 'gradle run'
             }
         }
 
@@ -42,6 +41,6 @@ pipeline {
         }
         failure {
             echo 'Build failed!'
-        }
-    }
+        }
+    }
 }
